@@ -93,7 +93,6 @@ namespace TMA_application
                     }
                     commandItemDirectoryid.Parameters.AddWithValue("@RequestId", p);
                     int q = Convert.ToInt32(commandItemDirectoryid.ExecuteScalar());
-                    MessageBox.Show(q.ToString());
                     string queryItemDirectory = "SELECT Quantity FROM ItemDirectory WHERE ItemId = @ItemId";
                     SqlCommand commandItemDirectory = new SqlCommand(queryItemDirectory, conn);
                     
@@ -107,7 +106,6 @@ namespace TMA_application
                     SqlCommand commandTMARequests = new SqlCommand(queryTMARequests, conn);
                     commandTMARequests.Parameters.AddWithValue("@RequestId", p);
                     tmaRequestsQuantity = Convert.ToInt32(commandTMARequests.ExecuteScalar());
-                    MessageBox.Show(quantity.ToString() + " quantity");
 
                     if (tmaRequestsQuantity > quantity)
                     {
