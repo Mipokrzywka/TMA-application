@@ -47,7 +47,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Wheat;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
@@ -57,60 +57,72 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.label1.Location = new System.Drawing.Point(270, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(470, 46);
+            this.label1.Size = new System.Drawing.Size(435, 47);
             this.label1.TabIndex = 0;
             this.label1.Text = "ORDER INFORMATION";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.label2.Location = new System.Drawing.Point(200, 206);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.Size = new System.Drawing.Size(65, 21);
             this.label2.TabIndex = 2;
             this.label2.Text = "Item id";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.label3.Location = new System.Drawing.Point(124, 273);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(161, 20);
+            this.label3.Size = new System.Drawing.Size(177, 21);
             this.label3.TabIndex = 3;
             this.label3.Text = "Unit Of Measurement";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.label4.Location = new System.Drawing.Point(217, 333);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 20);
+            this.label4.Size = new System.Drawing.Size(80, 21);
             this.label4.TabIndex = 4;
             this.label4.Text = "Quantity";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.label5.Location = new System.Drawing.Point(151, 391);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 20);
+            this.label5.Size = new System.Drawing.Size(148, 21);
             this.label5.TabIndex = 5;
             this.label5.Text = "Price without VAT";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.label6.Location = new System.Drawing.Point(207, 454);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 20);
+            this.label6.Size = new System.Drawing.Size(90, 21);
             this.label6.TabIndex = 6;
             this.label6.Text = "Comment";
             // 
             // item_name_textbox
             // 
+            this.item_name_textbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.item_name_textbox.Location = new System.Drawing.Point(332, 199);
             this.item_name_textbox.Name = "item_name_textbox";
             this.item_name_textbox.Size = new System.Drawing.Size(367, 26);
@@ -118,6 +130,7 @@
             // 
             // quantity_textbox
             // 
+            this.quantity_textbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.quantity_textbox.Location = new System.Drawing.Point(332, 333);
             this.quantity_textbox.Name = "quantity_textbox";
             this.quantity_textbox.Size = new System.Drawing.Size(367, 26);
@@ -125,6 +138,7 @@
             // 
             // price_textbox
             // 
+            this.price_textbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.price_textbox.Location = new System.Drawing.Point(332, 391);
             this.price_textbox.Name = "price_textbox";
             this.price_textbox.Size = new System.Drawing.Size(367, 26);
@@ -132,6 +146,7 @@
             // 
             // comment_textbox
             // 
+            this.comment_textbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.comment_textbox.Location = new System.Drawing.Point(332, 454);
             this.comment_textbox.Name = "comment_textbox";
             this.comment_textbox.Size = new System.Drawing.Size(367, 136);
@@ -140,6 +155,7 @@
             // 
             // unitofmeasurement_combobox
             // 
+            this.unitofmeasurement_combobox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.unitofmeasurement_combobox.FormattingEnabled = true;
             this.unitofmeasurement_combobox.Items.AddRange(new object[] {
             "Piece",
@@ -154,31 +170,35 @@
             // 
             // submit_button
             // 
-            this.submit_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.submit_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.submit_button.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.submit_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.submit_button.Location = new System.Drawing.Point(155, 771);
             this.submit_button.Name = "submit_button";
             this.submit_button.Size = new System.Drawing.Size(210, 105);
             this.submit_button.TabIndex = 12;
             this.submit_button.Text = "SUBMIT";
-            this.submit_button.UseVisualStyleBackColor = true;
+            this.submit_button.UseVisualStyleBackColor = false;
             this.submit_button.Click += new System.EventHandler(this.submit_button_Click);
             // 
             // cancel_button
             // 
-            this.cancel_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cancel_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.cancel_button.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cancel_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.cancel_button.Location = new System.Drawing.Point(559, 771);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(210, 105);
             this.cancel_button.TabIndex = 13;
             this.cancel_button.Text = "CANCEL";
-            this.cancel_button.UseVisualStyleBackColor = true;
+            this.cancel_button.UseVisualStyleBackColor = false;
             this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
             // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Linen;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.ClientSize = new System.Drawing.Size(978, 944);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.submit_button);
@@ -193,6 +213,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Order";
             this.Text = "Order";
             this.Load += new System.EventHandler(this.Order_Load);

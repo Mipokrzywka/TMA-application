@@ -30,11 +30,7 @@ namespace TMA_application
         }
         private void ShowData()
         {
-            try
-            {
-                using (conn = new SqlConnection(connection_string))
-                {
-                    string query = @"SELECT
+            Data.ShowData(@"SELECT
                     ID.ItemId,
                     IG.GroupName,
                     UM.MeasurementName,
@@ -47,23 +43,7 @@ namespace TMA_application
                     INNER JOIN UnitsOfMeasurement UM
                     ON UM.MeasurementID = ID.UnitOfMeasurement
                     INNER JOIN ItemGroups IG
-                    ON IG.GroupId = ID.ItemGroup";
-                    conn.Open();
-                    using (SqlCommand command = new SqlCommand(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(dt);
-                        }
-                        datagrid.DataSource = dt;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                    ON IG.GroupId = ID.ItemGroup", conn, datagrid, connection_string);
         }
 
         private void add_button_Click(object sender, EventArgs e)

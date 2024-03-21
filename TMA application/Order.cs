@@ -26,7 +26,6 @@ namespace TMA_application
 
         private void Order_Load(object sender, EventArgs e)
         {
-
         }
 
         private void unitofmeasurement_combobox_SelectedIndexChanged(object sender, EventArgs e)

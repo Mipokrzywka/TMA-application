@@ -31,11 +31,7 @@ namespace TMA_application
         }
         private void ShowData()
         {
-            try
-            {
-                using (conn = new SqlConnection(connection_string))
-                {
-                    string query = @"SELECT
+            Data.ShowData(@"SELECT
                                     R.RequestId,
                                     R.EmployeeName,
                                     IG.GroupName,
@@ -51,24 +47,7 @@ namespace TMA_application
                                     INNER JOIN 
                                     ItemGroups AS IG ON IG.GroupId = R.ItemId
                                     INNER JOIN 
-                                    Statuses AS S ON R.Status = S.StatusId;";
-                    
-                    conn.Open();
-                    using (SqlCommand command = new SqlCommand(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            adapter.Fill(dt);
-                        }
-                        datagrid.DataSource = dt;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                                    Statuses AS S ON R.Status = S.StatusId;", conn, datagrid, connection_string);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -83,35 +62,41 @@ namespace TMA_application
                 try
                 {
                     conn.Open();
-                    string queryitemid = "SELECT ItemId FROM TMARequests WHERE RequestId = @RequestId";
-                    SqlCommand commandItemDirectoryid = new SqlCommand(queryitemid, conn);
-                    int p;
-                    if (!int.TryParse(idtext.Text, out p))
-                    {
-                        MessageBox.Show("id must be a valid integer.");
-                        return;
-                    }
-                    commandItemDirectoryid.Parameters.AddWithValue("@RequestId", p);
-                    int q = Convert.ToInt32(commandItemDirectoryid.ExecuteScalar());
-                    string queryItemDirectory = "SELECT Quantity FROM ItemDirectory WHERE ItemId = @ItemId";
-                    SqlCommand commandItemDirectory = new SqlCommand(queryItemDirectory, conn);
-                    
-                    
 
-                    commandItemDirectory.Parameters.AddWithValue("@ItemId", q);
-                    quantity = Convert.ToInt32(commandItemDirectory.ExecuteScalar());
-                    
+                    //int p;
+                    //if (!int.TryParse(idtext.Text, out p))
+                    //{
+                    //    MessageBox.Show("id must be a valid integer.");
+                    //    return;
+                    //}
 
-                    string queryTMARequests = "SELECT Quantity FROM TMArequests WHERE RequestId = @RequestId";
-                    SqlCommand commandTMARequests = new SqlCommand(queryTMARequests, conn);
-                    commandTMARequests.Parameters.AddWithValue("@RequestId", p);
-                    tmaRequestsQuantity = Convert.ToInt32(commandTMARequests.ExecuteScalar());
+                    int RequestId = Data.TextToInt(idtext);
+
+                    //string queryitemid = "SELECT ItemId FROM TMARequests WHERE RequestId = @RequestId";
+                    //SqlCommand commandItemDirectoryid = new SqlCommand(queryitemid, conn);
+                    //commandItemDirectoryid.Parameters.AddWithValue("@RequestId", p);
+                    //int q = Convert.ToInt32(commandItemDirectoryid.ExecuteScalar());
+                    int Itemid = Data.RetrieveDataIntToInt("SELECT ItemId FROM TMARequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
+                    //string queryItemDirectory = "SELECT Quantity FROM ItemDirectory WHERE ItemId = @ItemId";
+                    quantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM ItemDirectory WHERE ItemId = @Value1", conn, connection_string, Itemid);
+                    //SqlCommand commandItemDirectory = new SqlCommand(queryItemDirectory, conn);
+
+
+
+                    //commandItemDirectory.Parameters.AddWithValue("@ItemId", id);
+                    //quantity = Convert.ToInt32(commandItemDirectory.ExecuteScalar());
+
+                    tmaRequestsQuantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM TMArequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
+                    //string queryTMARequests = "SELECT Quantity FROM TMArequests WHERE RequestId = @RequestId";
+                    //SqlCommand commandTMARequests = new SqlCommand(queryTMARequests, conn);
+                    //commandTMARequests.Parameters.AddWithValue("@RequestId", p);
+                    //tmaRequestsQuantity = Convert.ToInt32(commandTMARequests.ExecuteScalar());
 
                     if (tmaRequestsQuantity > quantity)
                     {
                         string updatequery1 = "UPDATE TMARequests SET Status = 3 WHERE RequestId = @RequestId";
                         SqlCommand anotherCommand = new SqlCommand(updatequery1, conn);
-                        anotherCommand.Parameters.AddWithValue("@RequestId", p);
+                        anotherCommand.Parameters.AddWithValue("@RequestId", RequestId);
                         anotherCommand.ExecuteNonQuery();
                         MessageBox.Show("Request quantity is higher than the stored quantity.");
                     }
@@ -119,21 +104,21 @@ namespace TMA_application
                     {
                         string updatequery2 = "UPDATE TMARequests SET Status = 2 WHERE RequestId = @RequestId";
                         SqlCommand anotherCommand = new SqlCommand(updatequery2, conn);
-                        anotherCommand.Parameters.AddWithValue("@RequestId", p);
+                        anotherCommand.Parameters.AddWithValue("@RequestId", RequestId);
                         anotherCommand.ExecuteNonQuery();
                         
 
                         string updatequantity = "Update ItemDirectory SET Quantity = @Value1 WHERE ItemId = @ItemId";
                         SqlCommand anotherCommand2 = new SqlCommand(updatequantity, conn);
                         anotherCommand2.Parameters.AddWithValue("@Value1", quantity - tmaRequestsQuantity);
-                        anotherCommand2.Parameters.AddWithValue("@ItemId", q);
+                        anotherCommand2.Parameters.AddWithValue("@ItemId", Itemid);
                         anotherCommand2.ExecuteNonQuery();
                         MessageBox.Show("Request updated.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    MessageBox.Show("Error: " + ex.Message);
                 }
 
             }
@@ -147,7 +132,7 @@ namespace TMA_application
                 try
                 {
                     conn.Open();
-                    string updatequery1 = "UPDATE TMARequests SET Status = 3 WHERE ItemId = @ItemId";
+                    string updatequery1 = "UPDATE TMARequests SET Status = 3 WHERE RequestId = @RequestId";
                     SqlCommand anotherCommand = new SqlCommand(updatequery1, conn);
                     int p;
                     if (!int.TryParse(idtext.Text, out p))
@@ -155,7 +140,7 @@ namespace TMA_application
                         MessageBox.Show("id must be a valid integer.");
                         return;
                     }
-                    anotherCommand.Parameters.AddWithValue("@ItemId", p);
+                    anotherCommand.Parameters.AddWithValue("@RequestId", p);
                     anotherCommand.ExecuteNonQuery();
                     MessageBox.Show("Request rejected.");
                 }

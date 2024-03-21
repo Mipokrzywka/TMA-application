@@ -17,16 +17,56 @@ namespace TMA_application
             InitializeComponent();
         }
 
-        private void items_button_Click(object sender, EventArgs e)
+        private void panel3_MouseClick(object sender, MouseEventArgs e)
+        {
+            Requests re = new Requests();
+            re.Show();
+        }
+
+        private void panel2_MouseClick(object sender, MouseEventArgs e)
         {
             AdminItems items = new AdminItems();
             items.Show();
         }
 
-        private void requests_button_Click(object sender, EventArgs e)
+        private void panel3_MouseEnter(object sender, EventArgs e)
+        {
+             panel3.BackColor = Color.FromArgb(78, 93, 167);
+        }
+
+        private void panel3_MouseLeave(object sender, EventArgs e)
+        {
+            panel3.BackColor = Color.FromArgb(39, 43, 68);
+        }
+
+        private void panel2_MouseEnter(object sender, EventArgs e)
+        {
+            panel2.BackColor = Color.FromArgb(78, 93, 167);
+        }
+
+        private void panel2_MouseLeave(object sender, EventArgs e)
+        {
+            panel2.BackColor = Color.FromArgb(39, 43, 68);
+        }
+
+        private void items_Click(object sender, EventArgs e)
+        {
+            AdminItems items = new AdminItems();
+            items.Show();
+        }
+
+        private void requests_Click(object sender, EventArgs e)
         {
             Requests re = new Requests();
             re.Show();
+        }
+        private void AdminHome_Resize(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AdminHome_Load(object sender, EventArgs e)
+        {
         }
     }
 }

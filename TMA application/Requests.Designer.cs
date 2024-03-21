@@ -43,7 +43,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Bisque;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.idtext);
             this.panel2.Controls.Add(this.reject_button);
@@ -56,9 +56,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.label2.Location = new System.Drawing.Point(14, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.Size = new System.Drawing.Size(83, 21);
             this.label2.TabIndex = 6;
             this.label2.Text = "picked Id";
             // 
@@ -71,8 +73,9 @@
             // 
             // reject_button
             // 
-            this.reject_button.BackColor = System.Drawing.Color.Bisque;
-            this.reject_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reject_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.reject_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reject_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.reject_button.Location = new System.Drawing.Point(0, 348);
             this.reject_button.Name = "reject_button";
             this.reject_button.Size = new System.Drawing.Size(194, 173);
@@ -83,8 +86,9 @@
             // 
             // confirm_button
             // 
-            this.confirm_button.BackColor = System.Drawing.Color.Bisque;
-            this.confirm_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.confirm_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.confirm_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.confirm_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.confirm_button.Location = new System.Drawing.Point(0, 169);
             this.confirm_button.Name = "confirm_button";
             this.confirm_button.Size = new System.Drawing.Size(194, 173);
@@ -95,21 +99,22 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Wheat;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(-1, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1180, 120);
+            this.panel1.Size = new System.Drawing.Size(1490, 121);
             this.panel1.TabIndex = 4;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(443, 37);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.label1.Location = new System.Drawing.Point(643, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 46);
+            this.label1.Size = new System.Drawing.Size(204, 47);
             this.label1.TabIndex = 0;
             this.label1.Text = "REQUESTS";
             // 
@@ -123,7 +128,7 @@
             this.datagrid.ReadOnly = true;
             this.datagrid.RowHeadersWidth = 62;
             this.datagrid.RowTemplate.Height = 28;
-            this.datagrid.Size = new System.Drawing.Size(982, 570);
+            this.datagrid.Size = new System.Drawing.Size(1287, 570);
             this.datagrid.TabIndex = 6;
             // 
             // Requests
@@ -131,10 +136,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(1178, 694);
+            this.ClientSize = new System.Drawing.Size(1484, 694);
             this.Controls.Add(this.datagrid);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Requests";
             this.Text = "Requests";
             this.Load += new System.EventHandler(this.Requests_Load);
