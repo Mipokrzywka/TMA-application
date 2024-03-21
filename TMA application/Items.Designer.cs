@@ -79,7 +79,7 @@
             // 
             this.order_button.BackColor = System.Drawing.Color.Bisque;
             this.order_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.order_button.Location = new System.Drawing.Point(0, 114);
+            this.order_button.Location = new System.Drawing.Point(0, 143);
             this.order_button.Name = "order_button";
             this.order_button.Size = new System.Drawing.Size(194, 173);
             this.order_button.TabIndex = 0;
@@ -135,7 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(1295, 530);
+            this.ClientSize = new System.Drawing.Size(1295, 630);
             this.Controls.Add(this.datagrid);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
