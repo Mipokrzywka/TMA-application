@@ -6,4 +6,4 @@ Coordinator login:
                 Password: adminpasswd
 
 
-!!App in developemsent!!
+!!App in developement!!
