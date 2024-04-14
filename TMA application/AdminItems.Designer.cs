@@ -48,6 +48,10 @@
             this.database1DataSet = new TMA_application.Database1DataSet();
             this.id_text = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.Label();
+            this.measure = new System.Windows.Forms.ComboBox();
+            this.group = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
@@ -77,6 +81,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.group);
+            this.panel2.Controls.Add(this.measure);
             this.panel2.Controls.Add(this.contact);
             this.panel2.Controls.Add(this.storage);
             this.panel2.Controls.Add(this.price);
@@ -93,7 +101,7 @@
             // contact
             // 
             this.contact.AutoSize = true;
-            this.contact.Location = new System.Drawing.Point(117, 301);
+            this.contact.Location = new System.Drawing.Point(117, 357);
             this.contact.Name = "contact";
             this.contact.Size = new System.Drawing.Size(124, 19);
             this.contact.TabIndex = 16;
@@ -102,7 +110,7 @@
             // storage
             // 
             this.storage.AutoSize = true;
-            this.storage.Location = new System.Drawing.Point(117, 219);
+            this.storage.Location = new System.Drawing.Point(120, 295);
             this.storage.Name = "storage";
             this.storage.Size = new System.Drawing.Size(133, 19);
             this.storage.TabIndex = 15;
@@ -111,7 +119,7 @@
             // price
             // 
             this.price.AutoSize = true;
-            this.price.Location = new System.Drawing.Point(117, 141);
+            this.price.Location = new System.Drawing.Point(120, 243);
             this.price.Name = "price";
             this.price.Size = new System.Drawing.Size(142, 19);
             this.price.TabIndex = 14;
@@ -120,7 +128,7 @@
             // quantity
             // 
             this.quantity.AutoSize = true;
-            this.quantity.Location = new System.Drawing.Point(117, 64);
+            this.quantity.Location = new System.Drawing.Point(120, 191);
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(72, 19);
             this.quantity.TabIndex = 13;
@@ -130,7 +138,7 @@
             // 
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox3.Location = new System.Drawing.Point(121, 86);
+            this.textBox3.Location = new System.Drawing.Point(121, 213);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(242, 27);
             this.textBox3.TabIndex = 7;
@@ -139,7 +147,7 @@
             // 
             this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.textBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox6.Location = new System.Drawing.Point(121, 323);
+            this.textBox6.Location = new System.Drawing.Point(121, 379);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(242, 27);
             this.textBox6.TabIndex = 10;
@@ -148,7 +156,7 @@
             // 
             this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox4.Location = new System.Drawing.Point(121, 163);
+            this.textBox4.Location = new System.Drawing.Point(121, 265);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(242, 27);
             this.textBox4.TabIndex = 8;
@@ -158,7 +166,7 @@
             // 
             this.textBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.textBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox5.Location = new System.Drawing.Point(121, 241);
+            this.textBox5.Location = new System.Drawing.Point(121, 317);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(242, 27);
             this.textBox5.TabIndex = 9;
@@ -247,6 +255,42 @@
             this.id.TabIndex = 6;
             this.id.Text = "id for delete/update";
             // 
+            // measure
+            // 
+            this.measure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.measure.FormattingEnabled = true;
+            this.measure.Location = new System.Drawing.Point(121, 161);
+            this.measure.Name = "measure";
+            this.measure.Size = new System.Drawing.Size(242, 27);
+            this.measure.TabIndex = 17;
+            // 
+            // group
+            // 
+            this.group.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.group.FormattingEnabled = true;
+            this.group.Location = new System.Drawing.Point(121, 101);
+            this.group.Name = "group";
+            this.group.Size = new System.Drawing.Size(242, 27);
+            this.group.TabIndex = 18;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(120, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 19);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Item group";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(117, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 19);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Measurement";
+            // 
             // AdminItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -301,5 +345,9 @@
         private System.Windows.Forms.Label id;
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
         private Database1DataSet database1DataSet;
+        private System.Windows.Forms.ComboBox group;
+        private System.Windows.Forms.ComboBox measure;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

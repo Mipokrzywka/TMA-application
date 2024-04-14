@@ -111,8 +111,7 @@ namespace TMA_application
                                     ContactPerson = @Value6
                                     WHERE ItemId = @Value7";
                     SqlCommand command = new SqlCommand(query, conn);
-                    command.Parameters.AddWithValue("@Value1", group.SelectedIndex + 1);
-                    command.Parameters.AddWithValue("@Value2", measure.SelectedIndex + 1);
+
 
                     int q;
                     if (!int.TryParse(textBox3.Text, out q))
