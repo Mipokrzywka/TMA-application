@@ -103,8 +103,7 @@ namespace TMA_application
                 {
                     conn.Open();
                     string query = @"UPDATE ItemDirectory 
-                                    SET ItemGroup = @Value1,
-                                    UnitOfMeasurement = @Value2,
+                                    SET 
                                     Quantity = @Value3,
                                     PriceWithoutVAT = @Value4,
                                     StorageLocation = @Value5,

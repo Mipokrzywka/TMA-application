@@ -49,12 +49,7 @@ namespace TMA_application
         //}
         public static string RetrieveDataString(string query, SqlConnection conn, TextBox textbox, string connection_string)
         {
-            int p;
-            if (!int.TryParse(textbox.Text, out p))
-            {
-                MessageBox.Show("id must be a valid integer.");
-                return null;
-            }
+            int p = TextToInt(textbox);
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@RequestId", p);
             string q = command.ExecuteScalar().ToString();
@@ -68,9 +63,14 @@ namespace TMA_application
             quantity = Convert.ToInt32(command.ExecuteScalar());
             return quantity;
         }
-        //public static void UpdateData(string query, SqlConnection conn, string connection_String, ) 
-        //{ 
-        //}
+        public static void UpdateDataShort(int count, string query, SqlConnection conn, TextBox text1, TextBox text2 = null, TextBox text3 = null, TextBox text4 = null, TextBox text5 = null, TextBox text6 = null, TextBox text7 = null) 
+        {
+            SqlCommand command = new SqlCommand(query,conn);
+            for(int i = 1; i < count+1;i++)
+            {
+                command.Parameters.AddWithValue("@Value"+i,text$i)
+            }
+        }
         public static int TextToInt(TextBox textbox)
         {
             int id;
