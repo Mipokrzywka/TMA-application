@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TMA_application
 {
@@ -34,19 +35,6 @@ namespace TMA_application
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //public static int RetrieveDataInt(string query, SqlConnection conn, TextBox textbox,  string connection_string)
-        //{
-        //    int p;
-        //    if (!int.TryParse(textbox.Text, out p))
-        //    {
-        //        MessageBox.Show("id must be a valid integer.");
-        //        return -1;
-        //    }
-        //    SqlCommand command = new SqlCommand(query, conn);
-        //    command.Parameters.AddWithValue("@RequestId", p);
-        //    int q = Convert.ToInt32(command.ExecuteScalar());
-        //    return q;
-        //}
         public static string RetrieveDataString(string query, SqlConnection conn, TextBox textbox, string connection_string)
         {
             int p = TextToInt(textbox);
@@ -63,23 +51,32 @@ namespace TMA_application
             quantity = Convert.ToInt32(command.ExecuteScalar());
             return quantity;
         }
-        public static void UpdateDataShort(int count, string query, SqlConnection conn, TextBox text1, TextBox text2 = null, TextBox text3 = null, TextBox text4 = null, TextBox text5 = null, TextBox text6 = null, TextBox text7 = null) 
-        {
-            SqlCommand command = new SqlCommand(query,conn);
-            for(int i = 1; i < count+1;i++)
-            {
-                command.Parameters.AddWithValue("@Value"+i,text$i)
-            }
-        }
-        public static int TextToInt(TextBox textbox)
+        public static int TextToInt(System.Windows.Forms.TextBox textbox)
         {
             int id;
             if (!int.TryParse(textbox.Text, out id))
             {
-                MessageBox.Show("id must be a valid integer.");
+                MessageBox.Show("The data inputted in " + textbox.Name + " must be a valid integer");
                 return -1;
             }
             return id;
+        }
+        public static decimal TextToDecimal(System.Windows.Forms.TextBox textbox)
+        {
+            decimal dec;
+            if(!decimal.TryParse(textbox.Text, out dec))
+            {
+                MessageBox.Show("The data inputted in " + textbox.Name + " must be a valid integer");
+                return -1;
+            }
+            return dec;
+        }
+        public static void Update(string query, SqlConnection conn, string connection_string,int value1, int value2)
+        {
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@Value1", value1);
+            command.Parameters.AddWithValue("@Value2", value2);
+            command.ExecuteNonQuery();
         }
     }
 }

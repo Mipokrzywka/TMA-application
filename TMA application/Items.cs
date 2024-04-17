@@ -39,19 +39,21 @@ namespace TMA_application
         private void ShowData()
         {
             Data.ShowData(@"SELECT
-                    ID.ItemId,
+                    ID.ItemName,
                     IG.GroupName,
                     UM.MeasurementName,
                     ID.Quantity, 
                     ID.PriceWithoutVAT, 
-                    ID.Status, 
+                    S.StatusName, 
                     ID.StorageLocation, 
                     ID.ContactPerson
                     FROM ItemDirectory ID
-                    INNER JOIN UnitsOfMeasurement UM
+                    LEFT JOIN UnitsOfMeasurement UM
                     ON UM.MeasurementID = ID.UnitOfMeasurement
-                    INNER JOIN ItemGroups IG
-                    ON IG.GroupId = ID.ItemGroup", conn, datagrid, connection_string);
+                    LEFT JOIN ItemGroups IG
+                    ON IG.GroupId = ID.ItemGroup
+                    LEFT JOIN Statuses S
+                    ON ID.Status = S.StatusId" , conn, datagrid, connection_string);
         }
 
         private void datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)

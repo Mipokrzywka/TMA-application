@@ -32,21 +32,24 @@ namespace TMA_application
         private void ShowData()
         {
             Data.ShowData(@"SELECT
-                                    R.RequestId,
-                                    R.EmployeeName,
+                                    R.RequestId AS ID,
+                                    R.EmployeeName AS Employee,
+                                    I.ItemName,
                                     IG.GroupName,
                                     UM.MeasurementName,
                                     R.Quantity, 
-                                    R.PriceWithoutVAT, 
+                                    I.PriceWithoutVAT * R.Quantity AS PriceWithoutVAT, 
                                     S.StatusName AS [Status], 
                                     R.Comment
                                     FROM 
                                     TMARequests AS R
-                                    INNER JOIN 
-                                    UnitsOfMeasurement AS UM ON UM.MeasurementId = R.UnitOfMeasurement
-                                    INNER JOIN 
-                                    ItemGroups AS IG ON IG.GroupId = R.ItemId
-                                    INNER JOIN 
+                                    LEFT JOIN
+                                    ItemDirectory AS I ON R.ItemId = I.ItemId
+                                    LEFT JOIN 
+                                    UnitsOfMeasurement AS UM ON UM.MeasurementId = I.UnitOfMeasurement
+                                    LEFT JOIN 
+                                    ItemGroups AS IG ON IG.GroupId = I.ItemGroup
+                                    LEFT JOIN 
                                     Statuses AS S ON R.Status = S.StatusId;", conn, datagrid, connection_string);
         }
 
@@ -62,58 +65,31 @@ namespace TMA_application
                 try
                 {
                     conn.Open();
-
-                    //int p;
-                    //if (!int.TryParse(idtext.Text, out p))
-                    //{
-                    //    MessageBox.Show("id must be a valid integer.");
-                    //    return;
-                    //}
-
                     int RequestId = Data.TextToInt(idtext);
-
-                    //string queryitemid = "SELECT ItemId FROM TMARequests WHERE RequestId = @RequestId";
-                    //SqlCommand commandItemDirectoryid = new SqlCommand(queryitemid, conn);
-                    //commandItemDirectoryid.Parameters.AddWithValue("@RequestId", p);
-                    //int q = Convert.ToInt32(commandItemDirectoryid.ExecuteScalar());
                     int Itemid = Data.RetrieveDataIntToInt("SELECT ItemId FROM TMARequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
-                    //string queryItemDirectory = "SELECT Quantity FROM ItemDirectory WHERE ItemId = @ItemId";
                     quantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM ItemDirectory WHERE ItemId = @Value1", conn, connection_string, Itemid);
-                    //SqlCommand commandItemDirectory = new SqlCommand(queryItemDirectory, conn);
-
-
-
-                    //commandItemDirectory.Parameters.AddWithValue("@ItemId", id);
-                    //quantity = Convert.ToInt32(commandItemDirectory.ExecuteScalar());
-
                     tmaRequestsQuantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM TMArequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
-                    //string queryTMARequests = "SELECT Quantity FROM TMArequests WHERE RequestId = @RequestId";
-                    //SqlCommand commandTMARequests = new SqlCommand(queryTMARequests, conn);
-                    //commandTMARequests.Parameters.AddWithValue("@RequestId", p);
-                    //tmaRequestsQuantity = Convert.ToInt32(commandTMARequests.ExecuteScalar());
-
+                    int diff = quantity - tmaRequestsQuantity;
                     if (tmaRequestsQuantity > quantity)
                     {
-                        string updatequery1 = "UPDATE TMARequests SET Status = 3 WHERE RequestId = @RequestId";
-                        SqlCommand anotherCommand = new SqlCommand(updatequery1, conn);
-                        anotherCommand.Parameters.AddWithValue("@RequestId", RequestId);
-                        anotherCommand.ExecuteNonQuery();
+                        string updatequery1 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
+                        Data.Update(updatequery1, conn, connection_string, 3, RequestId);
                         MessageBox.Show("Request quantity is higher than the stored quantity.");
                     }
                     else
                     {
-                        string updatequery2 = "UPDATE TMARequests SET Status = 2 WHERE RequestId = @RequestId";
-                        SqlCommand anotherCommand = new SqlCommand(updatequery2, conn);
-                        anotherCommand.Parameters.AddWithValue("@RequestId", RequestId);
-                        anotherCommand.ExecuteNonQuery();
-                        
+                        string updatequery2 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
+                        Data.Update(updatequery2, conn, connection_string, 2, RequestId);                     
 
-                        string updatequantity = "Update ItemDirectory SET Quantity = @Value1 WHERE ItemId = @ItemId";
-                        SqlCommand anotherCommand2 = new SqlCommand(updatequantity, conn);
-                        anotherCommand2.Parameters.AddWithValue("@Value1", quantity - tmaRequestsQuantity);
-                        anotherCommand2.Parameters.AddWithValue("@ItemId", Itemid);
-                        anotherCommand2.ExecuteNonQuery();
+                        string updatequantity = "UPDATE ItemDirectory SET Quantity = @Value1 WHERE ItemId = @Value2";
+                        Data.Update(updatequantity, conn, connection_string, diff, Itemid);
                         MessageBox.Show("Request updated.");
+                    }
+                    if(quantity == 0 || diff == 0)
+                    {
+                        string query = "UPDATE ItemDirectory SET Status = @Value1 WHERE ItemId = @Value2";
+                        Data.Update(query, conn, connection_string, 5, Itemid);
+                        MessageBox.Show("A refill needed");
                     }
                 }
                 catch (Exception ex)

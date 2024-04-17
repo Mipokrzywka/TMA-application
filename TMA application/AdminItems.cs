@@ -31,19 +31,21 @@ namespace TMA_application
         private void ShowData()
         {
             Data.ShowData(@"SELECT
-                    ID.ItemId,
+                    ID.ItemName,
                     IG.GroupName,
                     UM.MeasurementName,
                     ID.Quantity, 
                     ID.PriceWithoutVAT, 
-                    ID.Status, 
+                    S.StatusName, 
                     ID.StorageLocation, 
                     ID.ContactPerson
                     FROM ItemDirectory ID
-                    INNER JOIN UnitsOfMeasurement UM
+                    LEFT JOIN UnitsOfMeasurement UM
                     ON UM.MeasurementID = ID.UnitOfMeasurement
-                    INNER JOIN ItemGroups IG
-                    ON IG.GroupId = ID.ItemGroup", conn, datagrid, connection_string);
+                    LEFT JOIN ItemGroups IG
+                    ON IG.GroupId = ID.ItemGroup
+                    LEFT JOIN Statuses S
+                    ON ID.Status = S.StatusId", conn, datagrid, connection_string);
         }
 
         private void add_button_Click(object sender, EventArgs e)
@@ -110,33 +112,14 @@ namespace TMA_application
                                     ContactPerson = @Value6
                                     WHERE ItemId = @Value7";
                     SqlCommand command = new SqlCommand(query, conn);
-
-
-                    int q;
-                    if (!int.TryParse(textBox3.Text, out q))
-                    {
-                        MessageBox.Show("Quantity must be a valid integer.");
-                        return;
-                    }
+                    int q = Data.TextToInt(textBox3);
                     command.Parameters.AddWithValue("@Value3", q);
-
-                    decimal p;
-                    if (!decimal.TryParse(textBox4.Text, out p))
-                    {
-                        MessageBox.Show("Price must be a valid decimal.");
-                        return;
-                    }
+                    decimal p = Data.TextToDecimal(textBox4);
                     command.Parameters.AddWithValue("@Value4", p);
-
                     command.Parameters.AddWithValue("@Value5", textBox5.Text);
                     command.Parameters.AddWithValue("@Value6", textBox6.Text);
-                    int s;
-                    if (!int.TryParse(id_text.Text, out s))
-                    {
-                        MessageBox.Show("Quantity must be a valid integer.");
-                        return;
-                    }
-                    command.Parameters.AddWithValue("@Value7", s);
+                    int id = Data.TextToInt(id_text);
+                    command.Parameters.AddWithValue("@Value7", id);
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
