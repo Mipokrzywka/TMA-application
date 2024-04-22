@@ -18,6 +18,7 @@ namespace TMA_application
         string connection_string;
         int quantity;
         int tmaRequestsQuantity;
+        string storedString;
         public Requests()
         {
             InitializeComponent();
@@ -64,32 +65,49 @@ namespace TMA_application
             {
                 try
                 {
-                    conn.Open();
                     int RequestId = Data.TextToInt(idtext);
-                    int Itemid = Data.RetrieveDataIntToInt("SELECT ItemId FROM TMARequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
-                    quantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM ItemDirectory WHERE ItemId = @Value1", conn, connection_string, Itemid);
-                    tmaRequestsQuantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM TMArequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
-                    int diff = quantity - tmaRequestsQuantity;
-                    if (tmaRequestsQuantity > quantity)
+                    conn.Open();
+                    string query1 = "SELECT Status FROM TMARequests WHERE RequestID = @Value1";
+                    int status = Data.RetrieveDataIntToInt(query1, conn, connection_string, RequestId);
+                    if(status == 2)
                     {
-                        string updatequery1 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
-                        Data.Update(updatequery1, conn, connection_string, 3, RequestId);
-                        MessageBox.Show("Request quantity is higher than the stored quantity.");
+                        MessageBox.Show("The request is already approved");
+                        conn.Close();
                     }
-                    else
-                    {
-                        string updatequery2 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
-                        Data.Update(updatequery2, conn, connection_string, 2, RequestId);                     
+                    else 
+                    { 
+                        try
+                        {
+                            int Itemid = Data.RetrieveDataIntToInt("SELECT ItemId FROM TMARequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
+                            quantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM ItemDirectory WHERE ItemId = @Value1", conn, connection_string, Itemid);
+                            tmaRequestsQuantity = Data.RetrieveDataIntToInt("SELECT Quantity FROM TMArequests WHERE RequestId = @Value1", conn, connection_string, RequestId);
+                            int diff = quantity - tmaRequestsQuantity;
+                            if (tmaRequestsQuantity > quantity)
+                            {
+                                string updatequery1 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
+                                Data.Update(updatequery1, conn, connection_string, 3, RequestId);
+                                MessageBox.Show("Request quantity is higher than the stored quantity.");
+                            }
+                            else
+                            {
+                                string updatequery2 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
+                                Data.Update(updatequery2, conn, connection_string, 2, RequestId);                     
 
-                        string updatequantity = "UPDATE ItemDirectory SET Quantity = @Value1 WHERE ItemId = @Value2";
-                        Data.Update(updatequantity, conn, connection_string, diff, Itemid);
-                        MessageBox.Show("Request updated.");
-                    }
-                    if(quantity == 0 || diff == 0)
-                    {
-                        string query = "UPDATE ItemDirectory SET Status = @Value1 WHERE ItemId = @Value2";
-                        Data.Update(query, conn, connection_string, 5, Itemid);
-                        MessageBox.Show("A refill needed");
+                                string updatequantity = "UPDATE ItemDirectory SET Quantity = @Value1 WHERE ItemId = @Value2";
+                                Data.Update(updatequantity, conn, connection_string, diff, Itemid);
+                                MessageBox.Show("Request updated.");
+                            }
+                            if(quantity == 0 || diff == 0)
+                            {
+                                string query = "UPDATE ItemDirectory SET Status = @Value1 WHERE ItemId = @Value2";
+                                Data.Update(query, conn, connection_string, 5, Itemid);
+                                MessageBox.Show("A refill needed");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -103,21 +121,18 @@ namespace TMA_application
 
         private void reject_button_Click(object sender, EventArgs e)
         {
-            using(conn = new SqlConnection(connection_string))
+            CommentRequests commentRequests = new CommentRequests();
+            commentRequests.ReturnString += ChildForm_StringEntered;
+            commentRequests.ShowDialog();
+
+            using (conn = new SqlConnection(connection_string))
             {
                 try
                 {
                     conn.Open();
-                    string updatequery1 = "UPDATE TMARequests SET Status = 3 WHERE RequestId = @RequestId";
-                    SqlCommand anotherCommand = new SqlCommand(updatequery1, conn);
-                    int p;
-                    if (!int.TryParse(idtext.Text, out p))
-                    {
-                        MessageBox.Show("id must be a valid integer.");
-                        return;
-                    }
-                    anotherCommand.Parameters.AddWithValue("@RequestId", p);
-                    anotherCommand.ExecuteNonQuery();
+                    string query = "UPDATE TMARequests SET Status = 3, Comment = @Value1 WHERE RequestId = @Value2";
+                    int p = Data.TextToInt(idtext);
+                    Data.Update(query, conn, connection_string, storedString, p);
                     MessageBox.Show("Request rejected.");
                 }
                 catch(Exception ex)
@@ -126,6 +141,15 @@ namespace TMA_application
                 }
             }
             ShowData();
+        }
+        private void ChildForm_StringEntered(object sender, string enteredString)
+        {
+            storedString = enteredString;
+        }
+
+            private void datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

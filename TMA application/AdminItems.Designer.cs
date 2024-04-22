@@ -29,29 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ItemNameTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ItemGroupComboBox = new System.Windows.Forms.ComboBox();
+            this.MeasurementComboBox = new System.Windows.Forms.ComboBox();
+            this.add_button = new System.Windows.Forms.Button();
             this.contact = new System.Windows.Forms.Label();
             this.storage = new System.Windows.Forms.Label();
             this.price = new System.Windows.Forms.Label();
             this.quantity = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.add_button = new System.Windows.Forms.Button();
+            this.QuantityTextbox = new System.Windows.Forms.TextBox();
+            this.ContactTextBox = new System.Windows.Forms.TextBox();
+            this.PriceTextBox = new System.Windows.Forms.TextBox();
+            this.StorageTextBox = new System.Windows.Forms.TextBox();
             this.delete_button = new System.Windows.Forms.Button();
             this.update_button = new System.Windows.Forms.Button();
             this.datagrid = new System.Windows.Forms.DataGridView();
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.database1DataSet = new TMA_application.Database1DataSet();
-            this.id_text = new System.Windows.Forms.TextBox();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.Label();
-            this.measure = new System.Windows.Forms.ComboBox();
-            this.group = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
@@ -81,22 +86,104 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.ItemNameTextBox);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.group);
-            this.panel2.Controls.Add(this.measure);
+            this.panel2.Controls.Add(this.ItemGroupComboBox);
+            this.panel2.Controls.Add(this.MeasurementComboBox);
+            this.panel2.Controls.Add(this.add_button);
             this.panel2.Controls.Add(this.contact);
             this.panel2.Controls.Add(this.storage);
             this.panel2.Controls.Add(this.price);
             this.panel2.Controls.Add(this.quantity);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox6);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.QuantityTextbox);
+            this.panel2.Controls.Add(this.ContactTextBox);
+            this.panel2.Controls.Add(this.PriceTextBox);
+            this.panel2.Controls.Add(this.StorageTextBox);
             this.panel2.Location = new System.Drawing.Point(2, 111);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(474, 548);
             this.panel2.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(120, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 19);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Item name";
+            // 
+            // ItemNameTextBox
+            // 
+            this.ItemNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.ItemNameTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.ItemNameTextBox.Location = new System.Drawing.Point(121, 57);
+            this.ItemNameTextBox.Name = "ItemNameTextBox";
+            this.ItemNameTextBox.Size = new System.Drawing.Size(242, 27);
+            this.ItemNameTextBox.TabIndex = 21;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(117, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 19);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Measurement";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(120, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 19);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Item group";
+            // 
+            // ItemGroupComboBox
+            // 
+            this.ItemGroupComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.ItemGroupComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.ItemGroupComboBox.FormattingEnabled = true;
+            this.ItemGroupComboBox.Items.AddRange(new object[] {
+            "Electronics",
+            "Clothing",
+            "Furniture",
+            "Appliances"});
+            this.ItemGroupComboBox.Location = new System.Drawing.Point(121, 109);
+            this.ItemGroupComboBox.Name = "ItemGroupComboBox";
+            this.ItemGroupComboBox.Size = new System.Drawing.Size(242, 27);
+            this.ItemGroupComboBox.TabIndex = 18;
+            // 
+            // MeasurementComboBox
+            // 
+            this.MeasurementComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.MeasurementComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.MeasurementComboBox.FormattingEnabled = true;
+            this.MeasurementComboBox.Items.AddRange(new object[] {
+            "piece",
+            "box",
+            "set",
+            "pair"});
+            this.MeasurementComboBox.Location = new System.Drawing.Point(121, 161);
+            this.MeasurementComboBox.Name = "MeasurementComboBox";
+            this.MeasurementComboBox.Size = new System.Drawing.Size(242, 27);
+            this.MeasurementComboBox.TabIndex = 17;
+            // 
+            // add_button
+            // 
+            this.add_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.add_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.add_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.add_button.Location = new System.Drawing.Point(108, 431);
+            this.add_button.Name = "add_button";
+            this.add_button.Size = new System.Drawing.Size(270, 94);
+            this.add_button.TabIndex = 0;
+            this.add_button.Text = "ADD";
+            this.add_button.UseVisualStyleBackColor = false;
+            this.add_button.Click += new System.EventHandler(this.add_button_Click);
             // 
             // contact
             // 
@@ -130,66 +217,53 @@
             this.quantity.AutoSize = true;
             this.quantity.Location = new System.Drawing.Point(120, 191);
             this.quantity.Name = "quantity";
-            this.quantity.Size = new System.Drawing.Size(72, 19);
+            this.quantity.Size = new System.Drawing.Size(74, 19);
             this.quantity.TabIndex = 13;
-            this.quantity.Text = "quantity";
+            this.quantity.Text = "Quantity";
             // 
-            // textBox3
+            // QuantityTextbox
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox3.Location = new System.Drawing.Point(121, 213);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(242, 27);
-            this.textBox3.TabIndex = 7;
+            this.QuantityTextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.QuantityTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.QuantityTextbox.Location = new System.Drawing.Point(121, 213);
+            this.QuantityTextbox.Name = "QuantityTextbox";
+            this.QuantityTextbox.Size = new System.Drawing.Size(242, 27);
+            this.QuantityTextbox.TabIndex = 7;
             // 
-            // textBox6
+            // ContactTextBox
             // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.textBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox6.Location = new System.Drawing.Point(121, 379);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(242, 27);
-            this.textBox6.TabIndex = 10;
+            this.ContactTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.ContactTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.ContactTextBox.Location = new System.Drawing.Point(121, 379);
+            this.ContactTextBox.Name = "ContactTextBox";
+            this.ContactTextBox.Size = new System.Drawing.Size(242, 27);
+            this.ContactTextBox.TabIndex = 10;
             // 
-            // textBox4
+            // PriceTextBox
             // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox4.Location = new System.Drawing.Point(121, 265);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(242, 27);
-            this.textBox4.TabIndex = 8;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.PriceTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.PriceTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.PriceTextBox.Location = new System.Drawing.Point(121, 265);
+            this.PriceTextBox.Name = "PriceTextBox";
+            this.PriceTextBox.Size = new System.Drawing.Size(242, 27);
+            this.PriceTextBox.TabIndex = 8;
+            this.PriceTextBox.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
-            // textBox5
+            // StorageTextBox
             // 
-            this.textBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.textBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.textBox5.Location = new System.Drawing.Point(121, 317);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(242, 27);
-            this.textBox5.TabIndex = 9;
-            // 
-            // add_button
-            // 
-            this.add_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
-            this.add_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.add_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.add_button.Location = new System.Drawing.Point(1137, 741);
-            this.add_button.Name = "add_button";
-            this.add_button.Size = new System.Drawing.Size(270, 94);
-            this.add_button.TabIndex = 0;
-            this.add_button.Text = "ADD";
-            this.add_button.UseVisualStyleBackColor = false;
-            this.add_button.Click += new System.EventHandler(this.add_button_Click);
+            this.StorageTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.StorageTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            this.StorageTextBox.Location = new System.Drawing.Point(121, 317);
+            this.StorageTextBox.Name = "StorageTextBox";
+            this.StorageTextBox.Size = new System.Drawing.Size(242, 27);
+            this.StorageTextBox.TabIndex = 9;
             // 
             // delete_button
             // 
             this.delete_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.delete_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.delete_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.delete_button.Location = new System.Drawing.Point(623, 741);
+            this.delete_button.Location = new System.Drawing.Point(1003, 695);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(324, 94);
             this.delete_button.TabIndex = 4;
@@ -202,7 +276,7 @@
             this.update_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.update_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.update_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.update_button.Location = new System.Drawing.Point(171, 741);
+            this.update_button.Location = new System.Drawing.Point(507, 695);
             this.update_button.Name = "update_button";
             this.update_button.Size = new System.Drawing.Size(305, 94);
             this.update_button.TabIndex = 1;
@@ -216,14 +290,41 @@
             this.datagrid.AllowUserToDeleteRows = false;
             this.datagrid.AllowUserToOrderColumns = true;
             this.datagrid.AutoGenerateColumns = false;
+            this.datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagrid.DataSource = this.database1DataSetBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.datagrid.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.datagrid.Location = new System.Drawing.Point(472, 114);
             this.datagrid.Name = "datagrid";
             this.datagrid.ReadOnly = true;
-            this.datagrid.RowHeadersWidth = 62;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.datagrid.RowHeadersWidth = 20;
             this.datagrid.RowTemplate.Height = 28;
-            this.datagrid.Size = new System.Drawing.Size(1102, 548);
+            this.datagrid.Size = new System.Drawing.Size(970, 548);
             this.datagrid.TabIndex = 4;
             this.datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_CellContentClick);
             // 
@@ -237,59 +338,23 @@
             this.database1DataSet.DataSetName = "Database1DataSet";
             this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // id_text
+            // IdTextBox
             // 
-            this.id_text.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.id_text.Location = new System.Drawing.Point(95, 695);
-            this.id_text.Name = "id_text";
-            this.id_text.Size = new System.Drawing.Size(166, 27);
-            this.id_text.TabIndex = 5;
-            this.id_text.TextChanged += new System.EventHandler(this.id_text_TextChanged);
+            this.IdTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
+            this.IdTextBox.Location = new System.Drawing.Point(126, 736);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.Size = new System.Drawing.Size(166, 27);
+            this.IdTextBox.TabIndex = 5;
+            this.IdTextBox.TextChanged += new System.EventHandler(this.id_text_TextChanged);
             // 
             // id
             // 
             this.id.AutoSize = true;
-            this.id.Location = new System.Drawing.Point(91, 674);
+            this.id.Location = new System.Drawing.Point(128, 714);
             this.id.Name = "id";
             this.id.Size = new System.Drawing.Size(164, 19);
             this.id.TabIndex = 6;
             this.id.Text = "id for delete/update";
-            // 
-            // measure
-            // 
-            this.measure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.measure.FormattingEnabled = true;
-            this.measure.Location = new System.Drawing.Point(121, 161);
-            this.measure.Name = "measure";
-            this.measure.Size = new System.Drawing.Size(242, 27);
-            this.measure.TabIndex = 17;
-            // 
-            // group
-            // 
-            this.group.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.group.FormattingEnabled = true;
-            this.group.Location = new System.Drawing.Point(121, 101);
-            this.group.Name = "group";
-            this.group.Size = new System.Drawing.Size(242, 27);
-            this.group.TabIndex = 18;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(120, 79);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 19);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Item group";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(117, 139);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 19);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Measurement";
             // 
             // AdminItems
             // 
@@ -298,10 +363,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.ClientSize = new System.Drawing.Size(1440, 897);
             this.Controls.Add(this.id);
-            this.Controls.Add(this.id_text);
+            this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.delete_button);
             this.Controls.Add(this.update_button);
-            this.Controls.Add(this.add_button);
             this.Controls.Add(this.datagrid);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -333,21 +397,23 @@
         private System.Windows.Forms.Button update_button;
         private System.Windows.Forms.Button add_button;
         private System.Windows.Forms.DataGridView datagrid;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox QuantityTextbox;
+        private System.Windows.Forms.TextBox PriceTextBox;
+        private System.Windows.Forms.TextBox StorageTextBox;
+        private System.Windows.Forms.TextBox ContactTextBox;
         private System.Windows.Forms.Label contact;
         private System.Windows.Forms.Label storage;
         private System.Windows.Forms.Label price;
         private System.Windows.Forms.Label quantity;
-        private System.Windows.Forms.TextBox id_text;
+        private System.Windows.Forms.TextBox IdTextBox;
         private System.Windows.Forms.Label id;
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
         private Database1DataSet database1DataSet;
-        private System.Windows.Forms.ComboBox group;
-        private System.Windows.Forms.ComboBox measure;
+        private System.Windows.Forms.ComboBox ItemGroupComboBox;
+        private System.Windows.Forms.ComboBox MeasurementComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox ItemNameTextBox;
     }
 }

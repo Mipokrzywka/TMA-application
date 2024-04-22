@@ -35,11 +35,11 @@ namespace TMA_application
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public static string RetrieveDataString(string query, SqlConnection conn, TextBox textbox, string connection_string)
+        public static string RetrieveDataString(string query, SqlConnection conn, System.Windows.Forms.TextBox textbox, string connection_string)
         {
             int p = TextToInt(textbox);
             SqlCommand command = new SqlCommand(query, conn);
-            command.Parameters.AddWithValue("@RequestId", p);
+            command.Parameters.AddWithValue("@Value1", p);
             string q = command.ExecuteScalar().ToString();
             return q;
         }
@@ -56,7 +56,7 @@ namespace TMA_application
             int id;
             if (!int.TryParse(textbox.Text, out id))
             {
-                MessageBox.Show("The data inputted in " + textbox.Name + " must be a valid integer");
+                MessageBox.Show("The data inputted in (" + textbox.Name + ") must be a valid integer");
                 return -1;
             }
             return id;
@@ -66,12 +66,19 @@ namespace TMA_application
             decimal dec;
             if(!decimal.TryParse(textbox.Text, out dec))
             {
-                MessageBox.Show("The data inputted in " + textbox.Name + " must be a valid integer");
+                MessageBox.Show("The data inputted in (" + textbox.Name + ") must be a valid integer");
                 return -1;
             }
             return dec;
         }
         public static void Update(string query, SqlConnection conn, string connection_string,int value1, int value2)
+        {
+            SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@Value1", value1);
+            command.Parameters.AddWithValue("@Value2", value2);
+            command.ExecuteNonQuery();
+        }
+        public static void Update(string query, SqlConnection conn, string connection_string, string value1, int value2)
         {
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@Value1", value1);

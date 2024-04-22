@@ -22,6 +22,16 @@ namespace TMA_application
             InitializeComponent();
             connection_string = ConfigurationManager.ConnectionStrings["TMA_application.Properties.Settings.Database1ConnectionString"].ConnectionString;
         }
+        private void CleanText()
+        {
+            ItemNameTextBox.Text = string.Empty;
+            ItemGroupComboBox.SelectedIndex = -1;
+            MeasurementComboBox.SelectedIndex = -1;
+            QuantityTextbox.Text = string.Empty;
+            PriceTextBox.Text = string.Empty;
+            StorageTextBox.Text = string.Empty;
+            ContactTextBox.Text = string.Empty;
+        }
 
         private void AdminItems_Load(object sender, EventArgs e)
         {
@@ -57,32 +67,21 @@ namespace TMA_application
                 using (conn = new SqlConnection(connection_string))
                 {
                     conn.Open();
-                    string query = "INSERT INTO ItemDirectory(ItemGroup, UnitOfMeasurement, Quantity, PriceWithoutVAT, Status, StorageLocation, ContactPerson) VALUES (@Value1, @Value2, @Value3, @Value4, 'Available', @Value5, @Value6)";
+                    string query = "INSERT INTO ItemDirectory(ItemName,ItemGroup, UnitOfMeasurement, Quantity, PriceWithoutVAT, Status, StorageLocation, ContactPerson) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, 4, @Value6, @Value7)";
                     SqlCommand command = new SqlCommand(query, conn);
-                    command.Parameters.AddWithValue("@Value1", group.SelectedIndex + 1);
-                    command.Parameters.AddWithValue("@Value2", measure.SelectedIndex + 1);
-
-                    int q;
-                    if (!int.TryParse(textBox3.Text, out q))
-                    {
-                        MessageBox.Show("Quantity must be a valid integer.");
-                        return;
-                    }
-                    command.Parameters.AddWithValue("@Value3", q);
-
-                    decimal p;
-                    if (!decimal.TryParse(textBox4.Text, out p))
-                    {
-                        MessageBox.Show("Price must be a valid decimal.");
-                        return;
-                    }
-                    command.Parameters.AddWithValue("@Value4", p);
-
-                    command.Parameters.AddWithValue("@Value5", textBox5.Text);
-                    command.Parameters.AddWithValue("@Value6", textBox6.Text);
+                    command.Parameters.AddWithValue("@Value1", ItemNameTextBox.Text);
+                    command.Parameters.AddWithValue("@Value2", ItemGroupComboBox.SelectedIndex + 1);
+                    command.Parameters.AddWithValue("@Value3", MeasurementComboBox.SelectedIndex + 1);
+                    int q = Data.TextToInt(QuantityTextbox);
+                    command.Parameters.AddWithValue("@Value4", q);
+                    decimal p = Data.TextToDecimal(PriceTextBox);
+                    command.Parameters.AddWithValue("@Value5", p);
+                    command.Parameters.AddWithValue("@Value6", StorageTextBox.Text);
+                    command.Parameters.AddWithValue("@Value7", ContactTextBox.Text);
                     command.ExecuteNonQuery();
                     MessageBox.Show("Item added successfully.");
                     ShowData();
+                    CleanText();
                 }
             }
             catch (Exception ex)
@@ -112,25 +111,18 @@ namespace TMA_application
                                     ContactPerson = @Value6
                                     WHERE ItemId = @Value7";
                     SqlCommand command = new SqlCommand(query, conn);
-                    int q = Data.TextToInt(textBox3);
+                    int q = Data.TextToInt(QuantityTextbox);
                     command.Parameters.AddWithValue("@Value3", q);
-                    decimal p = Data.TextToDecimal(textBox4);
+                    decimal p = Data.TextToDecimal(PriceTextBox);
                     command.Parameters.AddWithValue("@Value4", p);
-                    command.Parameters.AddWithValue("@Value5", textBox5.Text);
-                    command.Parameters.AddWithValue("@Value6", textBox6.Text);
-                    int id = Data.TextToInt(id_text);
+                    command.Parameters.AddWithValue("@Value5", StorageTextBox.Text);
+                    command.Parameters.AddWithValue("@Value6", ContactTextBox.Text);
+                    int id = Data.TextToInt(IdTextBox);
                     command.Parameters.AddWithValue("@Value7", id);
                     int rowsAffected = command.ExecuteNonQuery();
+                    MessageBox.Show("Item updated successfully.");
 
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Item updated successfully.");
-                        ShowData();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Item not found or could not be updated.");
-                    }
+                    ShowData();
                 }
             }
             catch(Exception ex)
@@ -155,7 +147,7 @@ namespace TMA_application
                     string query = @"DELETE FROM ItemDirectory WHERE ItemId = @Value1";
                     SqlCommand command = new SqlCommand(query, conn);
                     int q;
-                    if (!int.TryParse(id_text.Text, out q))
+                    if (!int.TryParse(IdTextBox.Text, out q))
                     {
                         MessageBox.Show("Quantity must be a valid integer.");
                         return;
