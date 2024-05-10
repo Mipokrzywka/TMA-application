@@ -55,8 +55,6 @@
             this.datagrid = new System.Windows.Forms.DataGridView();
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.database1DataSet = new TMA_application.Database1DataSet();
-            this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.id = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
@@ -184,6 +182,8 @@
             this.add_button.Text = "ADD";
             this.add_button.UseVisualStyleBackColor = false;
             this.add_button.Click += new System.EventHandler(this.add_button_Click);
+            this.add_button.MouseEnter += new System.EventHandler(this.add_button_MouseEnter);
+            this.add_button.MouseLeave += new System.EventHandler(this.add_button_MouseLeave);
             // 
             // contact
             // 
@@ -263,26 +263,30 @@
             this.delete_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.delete_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.delete_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.delete_button.Location = new System.Drawing.Point(1003, 695);
+            this.delete_button.Location = new System.Drawing.Point(873, 720);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(324, 94);
             this.delete_button.TabIndex = 4;
             this.delete_button.Text = "DELETE";
             this.delete_button.UseVisualStyleBackColor = false;
             this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
+            this.delete_button.MouseLeave += new System.EventHandler(this.delete_button_MouseLeave);
+            this.delete_button.MouseHover += new System.EventHandler(this.delete_button_MouseHover);
             // 
             // update_button
             // 
             this.update_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             this.update_button.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.update_button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.update_button.Location = new System.Drawing.Point(507, 695);
+            this.update_button.Location = new System.Drawing.Point(270, 720);
             this.update_button.Name = "update_button";
             this.update_button.Size = new System.Drawing.Size(305, 94);
             this.update_button.TabIndex = 1;
             this.update_button.Text = "UPDATE";
             this.update_button.UseVisualStyleBackColor = false;
             this.update_button.Click += new System.EventHandler(this.update_button_Click);
+            this.update_button.MouseLeave += new System.EventHandler(this.update_button_MouseLeave);
+            this.update_button.MouseHover += new System.EventHandler(this.update_button_MouseHover);
             // 
             // datagrid
             // 
@@ -294,7 +298,7 @@
             this.datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -304,7 +308,7 @@
             this.datagrid.DataSource = this.database1DataSetBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(90)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(194)))), ((int)(((byte)(225)))));
@@ -327,6 +331,7 @@
             this.datagrid.Size = new System.Drawing.Size(970, 548);
             this.datagrid.TabIndex = 4;
             this.datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_CellContentClick);
+            this.datagrid.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datagrid_RowHeaderMouseClick);
             // 
             // database1DataSetBindingSource
             // 
@@ -338,32 +343,12 @@
             this.database1DataSet.DataSetName = "Database1DataSet";
             this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // IdTextBox
-            // 
-            this.IdTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
-            this.IdTextBox.Location = new System.Drawing.Point(126, 736);
-            this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.Size = new System.Drawing.Size(166, 27);
-            this.IdTextBox.TabIndex = 5;
-            this.IdTextBox.TextChanged += new System.EventHandler(this.id_text_TextChanged);
-            // 
-            // id
-            // 
-            this.id.AutoSize = true;
-            this.id.Location = new System.Drawing.Point(128, 714);
-            this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(164, 19);
-            this.id.TabIndex = 6;
-            this.id.Text = "id for delete/update";
-            // 
             // AdminItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(43)))), ((int)(((byte)(68)))));
             this.ClientSize = new System.Drawing.Size(1440, 897);
-            this.Controls.Add(this.id);
-            this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.delete_button);
             this.Controls.Add(this.update_button);
             this.Controls.Add(this.datagrid);
@@ -384,7 +369,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -405,8 +389,6 @@
         private System.Windows.Forms.Label storage;
         private System.Windows.Forms.Label price;
         private System.Windows.Forms.Label quantity;
-        private System.Windows.Forms.TextBox IdTextBox;
-        private System.Windows.Forms.Label id;
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
         private Database1DataSet database1DataSet;
         private System.Windows.Forms.ComboBox ItemGroupComboBox;
