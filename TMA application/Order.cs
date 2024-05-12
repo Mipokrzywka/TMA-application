@@ -48,7 +48,9 @@ namespace TMA_application
                     using (conn = new SqlConnection(connection_string))
                     {
                         conn.Open();
-                        string query = "INSERT INTO TMARequests(EmployeeName, ItemId, UnitOfMeasurement, Quantity, PriceWithoutVAT, Comment) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, @Value6)";
+                        string query = @"BEGIN TRANSACTION;
+                                        INSERT INTO TMARequests(EmployeeName, ItemId, UnitOfMeasurement, Quantity, PriceWithoutVAT, Comment) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, @Value6);
+                                        COMMIT;";
                         SqlCommand command = new SqlCommand(query, conn);
                         command.Parameters.AddWithValue("@Value1", Id);
                         int q;

@@ -84,22 +84,30 @@ namespace TMA_application
                             int diff = quantity - tmaRequestsQuantity;
                             if (tmaRequestsQuantity > quantity)
                             {
-                                string updatequery1 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
+                                string updatequery1 = @"BEGIN TRANSACTION;
+                                                        UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2;
+                                                        COMMIT;";
                                 Data.Update(updatequery1, conn, connection_string, 3, RequestId);
                                 MessageBox.Show("Request quantity is higher than the stored quantity.");
                             }
                             else
                             {
-                                string updatequery2 = "UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2";
+                                string updatequery2 = @"BEGIN TRANSACTION;
+                                                        UPDATE TMARequests SET Status = @Value1 WHERE RequestId = @Value2;
+                                                        COMMIT;";
                                 Data.Update(updatequery2, conn, connection_string, 2, RequestId);                     
 
-                                string updatequantity = "UPDATE ItemDirectory SET Quantity = @Value1 WHERE ItemId = @Value2";
+                                string updatequantity = @"BEGIN TRANSACTION;
+                                                         UPDATE ItemDirectory SET Quantity = @Value1 WHERE ItemId = @Value2;
+                                                         COMMIT;";
                                 Data.Update(updatequantity, conn, connection_string, diff, Itemid);
                                 MessageBox.Show("Request updated.");
                             }
                             if(quantity == 0 || diff == 0)
                             {
-                                string query = "UPDATE ItemDirectory SET Status = @Value1 WHERE ItemId = @Value2";
+                                string query = @"BEGIN TRANSACTION;
+                                                UPDATE ItemDirectory SET Status = @Value1 WHERE ItemId = @Value2;
+                                                COMMIT;";
                                 Data.Update(query, conn, connection_string, 5, Itemid);
                                 MessageBox.Show("A refill needed");
                             }
@@ -130,7 +138,9 @@ namespace TMA_application
                 try
                 {
                     conn.Open();
-                    string query = "UPDATE TMARequests SET Status = 3, Comment = @Value1 WHERE RequestId = @Value2";
+                    string query = @"BEGIN TRANSACTION;
+                                    UPDATE TMARequests SET Status = 3, Comment = @Value1 WHERE RequestId = @Value2;
+                                    COMMIT;";
                     int p = Data.TextToInt(idtext);
                     Data.Update(query, conn, connection_string, storedString, p);
                     MessageBox.Show("Request rejected.");

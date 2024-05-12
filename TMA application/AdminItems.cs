@@ -85,7 +85,9 @@ namespace TMA_application
                 using (conn = new SqlConnection(connection_string))
                 {
                     conn.Open();
-                    string query = "INSERT INTO ItemDirectory(ItemName,ItemGroup, UnitOfMeasurement, Quantity, PriceWithoutVAT, Status, StorageLocation, ContactPerson) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, 4, @Value6, @Value7)";
+                    string query = @"BEGIN TRANSACTION;
+                                    INSERT INTO ItemDirectory(ItemName,ItemGroup, UnitOfMeasurement, Quantity, PriceWithoutVAT, Status, StorageLocation, ContactPerson) VALUES (@Value1, @Value2, @Value3, @Value4, @Value5, 4, @Value6, @Value7);
+                                    COMMIT";
                     SqlCommand command = new SqlCommand(query, conn);
                     command.Parameters.AddWithValue("@Value1", ItemNameTextBox.Text);
                     command.Parameters.AddWithValue("@Value2", ItemGroupComboBox.SelectedIndex + 1);
@@ -121,13 +123,15 @@ namespace TMA_application
                 using (conn = new SqlConnection(connection_string))
                 {
                     conn.Open();
-                    string query = @"UPDATE ItemDirectory 
+                    string query = @"BEGIN TRANSACTION;
+                                    UPDATE ItemDirectory 
                                     SET 
                                     Quantity = @Value3,
                                     PriceWithoutVAT = @Value4,
                                     StorageLocation = @Value5,
                                     ContactPerson = @Value6
-                                    WHERE ItemId = @Value7";
+                                    WHERE ItemId = @Value7;
+                                    COMMIT;";
                     SqlCommand command = new SqlCommand(query, conn);
                     int q = Data.TextToInt(QuantityTextbox);
                     command.Parameters.AddWithValue("@Value3", q);
@@ -161,7 +165,9 @@ namespace TMA_application
                 using (conn = new SqlConnection(connection_string))
                 {
                     conn.Open();
-                    string query = @"DELETE FROM ItemDirectory WHERE ItemId = @Value1";
+                    string query = @"BEGIN TRANSACTION;
+                                    DELETE FROM ItemDirectory WHERE ItemId = @Value1;
+                                    COMMIT;";
                     SqlCommand command = new SqlCommand(query, conn);
                     command.Parameters.AddWithValue("@Value1", DataId);
                     int rowsAffected = command.ExecuteNonQuery();
