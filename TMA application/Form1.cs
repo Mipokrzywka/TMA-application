@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -13,29 +16,54 @@ namespace TMA_application
 {
     public partial class Form1 : Form
     {
+        string password = "";
+        string Role = "";
+        string connection_string;
+        SqlConnection conn;
         public Form1()
         {
             InitializeComponent();
+            connection_string = ConfigurationManager.ConnectionStrings["TMA_application.Properties.Settings.Database1ConnectionString"].ConnectionString;
             RoundCorners(panel1, 20);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void login_button_Click(object sender, EventArgs e)
         {
             string Id = user_textbox.Text;
             string pass = password_textbox.Text;
+            using (conn = new SqlConnection(connection_string))
+                try
+                {
+                    conn.Open();
+                    string query = @"SELECT Role, Password FROM Users
+                                    WHERE username = @value1";
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@value1", user_textbox.Text);
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        password = reader["Password"].ToString();
+                        Role = reader["Role"].ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message + "\n");
+                }
+                password = Cipher.CipherOut(password);
 
-            if (Id == "User1" && pass == "passwd")
+            if (Role == "2" && pass == password)
             {
                 Items items = new Items();
                 items.Id = Id;
                 items.Show();
             }
-            else if (Id == "Admin1" && pass == "adminpasswd")
+            else if (Role == "1" && pass == password)
             {
                 AdminHome h = new AdminHome();
                 h.Show();
